@@ -1,5 +1,6 @@
 pipeline{
     agent any
+	def gv
     environment{
         VERSION = '1.0.0'
     }
@@ -10,9 +11,10 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                echo "builidng my application"
-                echo "version of this file are ${VERSION}"
-		echo "parameters ${params.VERSION1}"
+				script{
+					gv = load "script.groovy"
+					gv.buildapp()
+				}
             }
         }
         stage("Deploy") {
@@ -22,7 +24,9 @@ pipeline{
 			}
 		}
             steps{
-                echo "Deploying my application"
+                script{
+					gv.deployapp()
+				}
             }
         }
     }
