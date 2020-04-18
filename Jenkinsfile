@@ -1,6 +1,7 @@
 def gv
 pipeline{
     agent any
+    options { skipDefaultCheckout() }
     environment{
         VERSION = '1.0.0'
     }
