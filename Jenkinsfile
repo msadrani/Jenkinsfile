@@ -12,10 +12,15 @@ pipeline{
             steps{
                 echo "builidng my application"
                 echo "version of this file are ${VERSION}"
-				echo "parameters ${params.VERSION1}"
+		echo "parameters ${params.VERSION1}"
             }
         }
         stage("Deploy"){
+		while{
+			expression{
+				params.TEST
+			}
+		}
             steps{
                 echo "Deploying my application"
             }
