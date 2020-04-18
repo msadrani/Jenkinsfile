@@ -15,8 +15,8 @@ pipeline{
 		echo "parameters ${params.VERSION1}"
             }
         }
-        stage("Deploy"){
-		while{
+        stage("Deploy") {
+		when {
 			expression{
 				params.TEST
 			}
