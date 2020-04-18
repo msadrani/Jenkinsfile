@@ -9,6 +9,9 @@ pipeline{
 		booleanParam(name: 'TEST', defaultValue: true, description: 'for testing')
 	}
     stages{
+        stage("checkout"){
+            checkout scm
+        }
         stage("Build"){
             steps{
 				script{
