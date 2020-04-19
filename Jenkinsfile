@@ -18,13 +18,13 @@ pipeline{
         }
         stage("Build"){
             steps{
-				script{
-					gv = load "script.groovy"
-					gv.buildapp()
-                    withCredentials{
+                        withCredentials{
                         [usernamePassword(Credentials: 'gituser',usernameVariable: USER , passwordVariable: PWD)]
                     }
                     {echo "${USER} ${PWD}"}
+				script{
+					gv = load "script.groovy"
+					gv.buildapp()
 				}
             }
         }
@@ -35,6 +35,7 @@ pipeline{
 			}
 		}
             steps{
+                echo "crdentials ${CRED}"
                 script{
 					gv.deployapp()
 				}
